@@ -9,6 +9,11 @@ import { PostsComponent } from './components/posts/posts.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { CreatePostComponent } from './components/create-post/create-post.component';
+import { AuthService } from './services/auth/auth.service';
+import { UserService } from './services/user/user.service';
+import { AuthGuard } from './gaurds/auth.guard';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -23,9 +28,15 @@ import { CreatePostComponent } from './components/create-post/create-post.compon
   imports: [
     BrowserModule,
     AppRoutingModule,
-    MaterialdesignModule
+    MaterialdesignModule,
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    AuthService,
+    UserService,
+    {provide : HTTP_INTERCEPTORS, useClass : AuthGuard, multi:true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

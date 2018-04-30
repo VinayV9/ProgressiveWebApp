@@ -4,21 +4,12 @@
     background-size: cover;
   }
   
-  .example-container {
-    display: flex;
-    flex-direction: column;
-    width:100%;
-    justify-items: center;
+  .post{
+    margin: 0 auto;
+    margin-bottom:20px;
+    width:80%;
   }
-  
-  .mat-table {
-    overflow: auto;
-    margin-top:20px;
-  }
-  .example-card{
-      width:80%;
-      margin:0 auto;
-      margin-top:20px;
-      margin-bottom:20px;
+  .material-icons.orange600 { 
+    color: red;  
   }
   
