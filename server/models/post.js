@@ -1,19 +1,24 @@
 const mongoDB = require('mongoose')
 
-const user = mongoDB.Schema({
+const post = mongoDB.Schema({
     username : {
         type: String,
         required: [true, "username is required"]
     },
-    email : {
+    userId : {
         type: String,
         required: [true, "email is required"]
     },
-    password : {
+    data : {
         type: String,
         required: [true, "password is required"]
+    },
+    created_at:{
+        type: String,
+        required: [true, "password is required"],
+        default: Date.now
     }
 })
 
 
-module.exports = mongoDB.model('User', user)
+module.exports = mongoDB.model('Post', post)

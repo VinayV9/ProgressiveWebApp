@@ -1,31 +1,43 @@
 const jwt = require('jsonwebtoken')
-// const User = require('../models/user')
+const Post = require('../models/post')
 const config = require('../config/config')
 const userSvc = {}
 
 module.exports = userSvc
 
-userSvc.verifyUser = function(req, res, next){
-    if(!req.headers.authorization) {
-        return res.status(401).send('authorization header not found')
-    }
-    let token = req.headers.authorization
-    if(token === 'null') {
-        return res.status(401).send('Unauthorized request')    
-    }
-    let payload = jwt.verify(token, config.secretKey)
-    if(!payload) {
-        return res.status(401).send('Unauthorized request')    
-    }
-    req.userId = payload.subject
-    next()
+
+userSvc.insertPost = function(req, res){
+    post = req.body.post
+    post.created_by = req.userId
+    post = new Post(post)
+
+    post.save(function(err, post){
+        if(err){
+            throw err
+        }else{
+            res.status(200).send("post saved")
+        }
+    }) 
 }
 
-userSvc.profile = function(req, res){
-    let profile = {
-        username: "vinay",
-        age: "21",
-        job: "hacker"
-    }
-    res.status(200).send(profile)
+userSvc.updatePost = function(req, res){
+    post = req.body.post
+    res.status(200).send("post saved")
+}
+
+userSvc.deletePost = function(req, res){
+    post = req.body.post
+    res.status(200).send("post saved")
+}
+
+userSvc.getPosts = function(req, res){
+    post = req.body.post
+    Post.find((err, posts)=>{
+        if(err){
+            throw err
+        }else{
+            res.status(200).send(posts)
+        }
+    })
+    res.status(200).send("post saved")
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Post } from '../../models/post';
+import { PostService } from '../../services/post/post.service';
 
 @Component({
   selector: 'app-posts',
@@ -8,7 +9,7 @@ import { Post } from '../../models/post';
 })
 export class PostsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private postSvc: PostService) { }
   
   ngOnInit() {
   }
@@ -79,9 +80,24 @@ export class PostsComponent implements OnInit {
       }
    
   ];
+
   liked(like){
     console.log(like);
     return !like;
   };
+
+  getPosts() {
+    this.postSvc.getPosts()
+      .subscribe(
+        data => {
+          console.log(data);
+          this.posts = data
+        },
+        error => {
+          console.log(error);
+        });
+  };
+
+
    
 }

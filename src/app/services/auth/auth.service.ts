@@ -14,7 +14,8 @@ export class AuthService {
     private http: HttpClient,
     private router: Router
   ) { }
-  login(user : any){
+
+  login(user : User){
     return this.http.post<any>('/auth/login', user, httpOptions);
   }
 
@@ -30,9 +31,8 @@ export class AuthService {
     localStorage.removeItem('token');
     this.router.navigate(['/']);
   }
-
+  
   getToken(){
-    console.log("intercepting the request")
-    return   localStorage.getItem('token');
+    return localStorage.getItem('token');
   }
 }

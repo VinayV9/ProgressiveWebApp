@@ -1,6 +1,6 @@
 export class Post {
-   imageUrl:string;
-   paragraph:string;
-   title:string;
-   subTitle:string;
+   imageUrl:string = "https://material.angular.io/assets/img/examples/shiba2.jpg";
+   paragraph:string = "";
+   title:string = "vinay";
+   subTitle:string = "mid-1";
 }

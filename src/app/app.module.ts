@@ -14,6 +14,8 @@ import { UserService } from './services/user/user.service';
 import { AuthGuard } from './gaurds/auth.guard';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { UserComponent } from './components/user/user.component';
+import { PostService } from './services/post/post.service';
 
 
 @NgModule({
@@ -23,7 +25,8 @@ import { FormsModule } from '@angular/forms';
     PostsComponent,
     LoginComponent,
     RegisterComponent,
-    CreatePostComponent
+    CreatePostComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,
@@ -35,6 +38,7 @@ import { FormsModule } from '@angular/forms';
   providers: [
     AuthService,
     UserService,
+    PostService,
     {provide : HTTP_INTERCEPTORS, useClass : AuthGuard, multi:true}
   ],
   bootstrap: [AppComponent]
