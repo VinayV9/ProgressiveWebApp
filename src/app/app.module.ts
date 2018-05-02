@@ -16,6 +16,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { UserComponent } from './components/user/user.component';
 import { PostService } from './services/post/post.service';
+import { HomeComponent } from './components/home/home.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { PostService } from './services/post/post.service';
     LoginComponent,
     RegisterComponent,
     CreatePostComponent,
-    UserComponent
+    UserComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
