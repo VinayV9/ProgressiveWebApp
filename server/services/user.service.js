@@ -7,31 +7,31 @@ module.exports = userSvc
 
 
 userSvc.insertPost = function(req, res){
-    post = req.body.post
-    post.created_by = req.userId
-    post = new Post(post)
+    post = req.body
+    post.userId = req.userId
 
+    post = new Post(post)
+    console.log(post)
     post.save(function(err, post){
         if(err){
             throw err
         }else{
-            res.status(200).send("post saved")
+            res.status(200).send({error:false})
         }
     }) 
 }
 
 userSvc.updatePost = function(req, res){
-    post = req.body.post
-    res.status(200).send("post saved")
+    post = req.body
+    res.status(200).send({error:false})
 }
 
 userSvc.deletePost = function(req, res){
-    post = req.body.post
-    res.status(200).send("post saved")
+    post = req.body
+    res.status(200).send({error:false})
 }
 
 userSvc.getPosts = function(req, res){
-    post = req.body.post
     Post.find((err, posts)=>{
         if(err){
             throw err
@@ -39,5 +39,4 @@ userSvc.getPosts = function(req, res){
             res.status(200).send(posts)
         }
     })
-    res.status(200).send("post saved")
 }

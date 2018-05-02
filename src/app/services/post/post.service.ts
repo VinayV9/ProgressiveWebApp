@@ -15,7 +15,7 @@ export class PostService {
   }
 
   getPosts(){
-    return this.http.get<any>('/auth/posts', httpOptions);
+    return this.http.post<any>('/auth/posts',{}, httpOptions);
   }
 
   updatePost(){

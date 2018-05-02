@@ -10,6 +10,6 @@ router.post('/login', authSvc.login)
 
 router.post('/post', tokenCheck, userSvc.insertPost)
 
-router.get('/posts', tokenCheck, userSvc.getPosts)
+router.post('/posts', userSvc.getPosts)
 
 module.exports = router
