@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {User} from '../../models/user';
 import { AuthService } from '../../services/auth/auth.service';
 import { Router} from '@angular/router';
+import { UserService } from '../../services/user/user.service';
 
 
 @Component({
@@ -14,7 +15,8 @@ export class RegisterComponent implements OnInit {
 
   constructor(
     private registerSvc: AuthService,
-    private router: Router
+    private router: Router,
+    private userSvc: UserService
   ) { }
 
   ngOnInit() {
@@ -25,6 +27,7 @@ export class RegisterComponent implements OnInit {
             .subscribe(
                 data => {
                   localStorage.setItem('token', data.token);
+                  this.userSvc.getProfile(data);
                   this.router.navigate(['/create']);
                 },
                 error => {

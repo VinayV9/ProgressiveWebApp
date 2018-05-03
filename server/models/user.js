@@ -5,6 +5,11 @@ const user = mongoDB.Schema({
         type: String,
         required: [true, "username is required"]
     },
+    avtar:{
+        type: String,
+        required: [true, "image url required"],
+        default: "https://www.w3schools.com/w3images/avatar6.png"
+    },
     email : {
         type: String,
         required: [true, "email is required"]

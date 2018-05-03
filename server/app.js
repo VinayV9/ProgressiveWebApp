@@ -12,15 +12,15 @@ app.use(bodyParser.json())
 // server client files
 app.use(express.static(__dirname + "/../dist"))
 
-app.get('/', (req, res)=>{
+app.get('/', (req, res) => {
    res.sendFile('/../dist/index.html')
-})
-
-app.get('*', (req, res) => {
-  res.redirect('/')
 })
 
 //routes
 app.use('/auth', require('./controllers/users.controller'))
+
+app.get('*', (req, res) => {
+  res.redirect('/')
+})
 
 module.exports = app

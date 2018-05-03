@@ -13,44 +13,43 @@ module.exports = authSvc
 
 authSvc.register = function(req, res){
     let user = req.body
+
     User.find({email : user.email}, (err, data) => {
-        if(err){
-            throw err
-        }else{
-            if(data.length === 0){
-                let newUser = new User({email: user.email})
-                let token = authSvc.createToken(newUser._id)
-                newUser.password = authSvc.createHash(user.password)
-                newUser.save((err, data) => {
-                    if(err){
-                        throw err
-                    }else{
-                        res.send({token})
-                    }
+
+        if(err){ throw err }
+        if(data.length === 0){
+            user.password = authSvc.createHash(user.password)
+            let newUser = new User(user)
+            let token = authSvc.createToken(newUser._id)
+            newUser.save((err, data) => {
+                if(err){ throw err }
+                res.status(200).send({
+                    "token" :token,
+                    "username":data.username,
+                    "avtar":data.avtar
                 }) 
-            }else{
-              res.send("already account exit")
-            }
-        }
+            }) 
+        }else{
+            res.send("already account exit") 
+        }  
     })
 }
 
 authSvc.login = function(req, res){
     let user = req.body
-    User.findOne({email : user.email}, (err, dbUser) => {
-        if(err){
-            throw err
-        }else{
-            if(dbUser){
-                if(bcrypt.compareSync(user.password, dbUser.password)){
-                    let token = authSvc.createToken(dbUser._id)
-                    res.status(200).send({ token })
-                }else{
-                    res.status(401).send("unauthorized")
-                }
-            }else{
-                res.status(401).send("unauthorized")
-            }
+    User.findOne({email : user.email}, (err, data) => {
+        if(err){ throw err }
+        else{
+            if(data){
+                if(bcrypt.compareSync(user.password, data.password)){
+                    let token = authSvc.createToken(data._id)
+                    res.status(200).send({
+                        token :token,
+                        username:data.username,
+                        avtar:data.avtar
+                    }) 
+                }else{ res.status(401).send("unauthorized") }
+            }else{ res.status(401).send("unauthorized") }
         }
     })
 }

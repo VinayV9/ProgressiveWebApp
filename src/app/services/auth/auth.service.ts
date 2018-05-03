@@ -15,7 +15,7 @@ export class AuthService {
     private router: Router
   ) { }
 
-  login(user : User){
+  login(user : any){
     return this.http.post<any>('/auth/login', user, httpOptions);
   }
 
@@ -23,7 +23,7 @@ export class AuthService {
     return !!localStorage.getItem('token');  
   }
 
-  register(user : User){
+  register(user : any){
     return this.http.post<any>('/auth/register', user, httpOptions);
   }
 
