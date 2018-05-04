@@ -16,6 +16,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { UserComponent } from './components/user/user.component';
 import { PostService } from './services/post/post.service';
+// import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 
 @NgModule({

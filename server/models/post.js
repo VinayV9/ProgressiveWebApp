@@ -2,7 +2,8 @@ const mongoDB = require('mongoose')
 
 const post = mongoDB.Schema({
     userId : {
-        type: String,
+        type: mongoDB.Schema.ObjectId,
+        ref: 'User',
         required: [true, "userId is required"]
     },
     data : {
@@ -16,5 +17,11 @@ const post = mongoDB.Schema({
     }
 })
 
+function autoPopulate(next){
+      this.populate('userId')
+      next()
+}
+
+post.pre('find',autoPopulate);
 
 module.exports = mongoDB.model('Post', post)

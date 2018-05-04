@@ -14,7 +14,7 @@
     <img src="{{user.avtar}}" alt="Avatar" class="avatar" [matMenuTriggerFor]="menu">
     <mat-menu #menu="matMenu">
       <button mat-menu-item>My account</button>
-      <button mat-menu-item (click)="this.authSvc.logout()" *ngIf="this.authSvc.loggedIn()"> Logout</button>
+      <button mat-menu-item (click)="this.authSvc.logout()" *ngIf="this.authSvc.loggedIn()">Logout</button>
     </mat-menu>
   </div>
 </mat-toolbar>

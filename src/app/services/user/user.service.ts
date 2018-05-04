@@ -12,7 +12,7 @@ export class UserService {
   constructor(
     private http: HttpClient,
   ) { }
-  private user = new BehaviorSubject<any>(null);
+  private user = new BehaviorSubject<any>(JSON.parse(localStorage.getItem('user')));
   cast = this.user.asObservable();
   
   getProfile(data){
@@ -20,6 +20,8 @@ export class UserService {
       username:data.username,
       avtar:data.avtar
     };
+    localStorage.setItem('user', JSON.stringify(newUser))
+    
     this.user.next(newUser);
   }
 }

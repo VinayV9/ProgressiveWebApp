@@ -20,7 +20,7 @@ app.get('/', (req, res) => {
 app.use('/auth', require('./controllers/users.controller'))
 
 app.get('*', (req, res) => {
-  res.redirect('/')
+  res.redirect('back')
 })
 
 module.exports = app

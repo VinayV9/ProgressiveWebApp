@@ -12,11 +12,14 @@ const user = mongoDB.Schema({
     },
     email : {
         type: String,
+        unique: true,
+        trim:true,
         required: [true, "email is required"]
     },
     password : {
         type: String,
-        required: [true, "password is required"]
+        required: [true, "password is required"],
+        select: false
     }
 })
 
